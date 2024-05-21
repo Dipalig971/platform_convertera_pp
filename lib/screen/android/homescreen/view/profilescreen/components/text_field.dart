@@ -1,56 +1,42 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../../utils/text_editing_controllers.dart';
+import 'package:provider/provider.dart';
+import '../../../../../../provider/SwitchProvider.dart';
+import '../../../../../../utils/adaptive/text_field_adaptive.dart';
 import '../profile.dart';
 
-Column Text_field_method() {
-  return Column(
-    children: [
-      Padding(
-        padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
-        child: TextField(
-          controller: nameController,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(width: 3),
-            ),
-            hintText: 'Full Name',
-            labelText: 'Full Name',
-            prefixIcon: const Icon(Icons.person_2_outlined),
-          ),
+
+class Text_field_method extends StatelessWidget {
+  const Text_field_method({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        AdaptiveTextField(
+          controller: nameController!,
+          hintText: "Full Name",
+          icon: (Provider.of<SwitchProvider>(context).isActive)
+              ? const Icon(Icons.person)
+              : const Icon(CupertinoIcons.person),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
-        child: TextField(
-          controller: numberController,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(width: 3),
-            ),
-            hintText: 'Phone Number',
-            labelText: 'Phone Number',
-            prefixIcon: const Icon(Icons.phone),
-          ),
+        AdaptiveTextField(
+          controller: numberController!,
+          hintText: "Phone Number",
+          icon: (Provider.of<SwitchProvider>(context).isActive)
+              ? const Icon(Icons.phone)
+              : const Icon(CupertinoIcons.phone),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
-        child: TextField(
-          controller: chatsController,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(width: 3),
-            ),
-            hintText: 'Chat Conversation',
-            labelText: 'Chat Conversation',
-            prefixIcon: const Icon(Icons.message_outlined),
-          ),
+        AdaptiveTextField(
+          controller: chatsController!,
+          hintText: "Chat Conversation",
+          icon: (Provider.of<SwitchProvider>(context).isActive)
+              ? const Icon(Icons.chat)
+              : const Icon(CupertinoIcons.chat_bubble_text_fill),
         ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }

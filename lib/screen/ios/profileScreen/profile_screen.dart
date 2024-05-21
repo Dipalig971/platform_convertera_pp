@@ -8,6 +8,17 @@ import 'components/cupertino_text_field.dart';
 import 'components/date_picker.dart';
 import 'components/time_picker.dart';
 
+
+
+
+final TextEditingController nameController = TextEditingController();
+final TextEditingController numberController = TextEditingController();
+final TextEditingController chatsController = TextEditingController();
+final TextEditingController dateController = TextEditingController();
+final TextEditingController timeController = TextEditingController();
+
+
+
 final ImagePicker picker = ImagePicker();
 File? image;
 
@@ -50,6 +61,7 @@ class IosProfileScreen extends StatelessWidget {
             ),
           ),
           Cupertino_Text_Filed(),
+          SizedBox(height: 10,),
           date_picker(context),
           time_picker(context),
           const SizedBox(
@@ -58,7 +70,7 @@ class IosProfileScreen extends StatelessWidget {
          const Row(
            mainAxisAlignment: MainAxisAlignment.center,
            children: [
-              SaveButton()
+             AdaptiveSaveButton()
            ],
          )
         ],

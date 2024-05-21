@@ -1,23 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../../../../../utils/text_editing_controllers.dart';
-import '../profile.dart';
+import '../../../../../../provider/dateTime_provider.dart';
 
 InkWell PickTimeMethod(BuildContext context) {
+  final ProviderTrue = Provider.of<AddProvider>(context, listen: true);
+  final ProviderFalse = Provider.of<AddProvider>(context, listen: false);
   return InkWell(
     onTap: () async {
-      TimeOfDay? selectedTime = await showTimePicker(
-        context: context,
-        initialTime: TimeOfDay.now(),
-        orientation: Orientation.portrait,
-      );
-      if (selectedTime != null) {
-        final now = DateTime.now();
-        final dateTime = DateTime(now.year, now.month, now.day,
-            selectedTime.hour, selectedTime.minute);
-        timeController.text = selectedTime.format(context);
-        print(dateTime);
-      }
+      ProviderFalse.setTime(
+          timeOfDay: await showTimePicker(
+              context: context, initialTime: TimeOfDay.now())?? TimeOfDay.now());
     },
     child: Row(
       children: [
@@ -29,11 +23,10 @@ InkWell PickTimeMethod(BuildContext context) {
           ),
         ),
         Text(
-          timeController.text.isEmpty
-              ? 'Pick Time'
-              : timeController.text,
-          style: const TextStyle(fontSize: 18),
-        )
+          ProviderTrue.timeOfDay == null
+              ? "Pick Time"
+              : "${ProviderTrue.timeOfDay!.hour.toString() + ":" + ProviderTrue.timeOfDay!.minute.toString()}",style: TextStyle(fontSize: 20),
+        ),
       ],
     ),
   );

@@ -1,28 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import '../../../../provider/dateTime_provider.dart';
 
-import '../../../../provider/theme_provider.dart';
-
-GestureDetector date_picker(context) {
-  return GestureDetector(
-    onTap: () {
+CupertinoButton date_picker(context) {
+  final ProviderTrue = Provider.of<AddProvider>(context, listen: true);
+  final ProviderFalse = Provider.of<AddProvider>(context, listen: false);
+  return CupertinoButton(
+    child: Row(
+      children: [
+        Icon(
+          CupertinoIcons.calendar,
+          size: 22,
+        ),
+        SizedBox(width: 10,),
+        Text(
+          ProviderTrue.dateTime == null
+              ? "Pick Date"
+              : "${ProviderTrue.dateTime!.day.toString() + "-" + ProviderTrue.dateTime!.month.toString() + "-" + ProviderTrue.dateTime!.year.toString()}",
+        ),
+      ],
+    ),
+    onPressed: () {
       CupertinoDatePicker(
         onDateTimeChanged: (value) {
-          // ProviderFalse.set
+          ProviderFalse.setDate(value);
         },
       );
     },
-    child:  Row(
-      children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-          child: Icon(
-            CupertinoIcons.calendar,
-            size: 22,
-          ),
-        ),
-        Text('Pick Date',style: TextStyle(color: Provider.of<ThemeProvider>(context).isDark ? CupertinoColors.white : CupertinoColors.black  ),)
-      ],
-    ),
   );
 }

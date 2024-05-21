@@ -2,10 +2,11 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:platform_convertera_pp/provider/dateTime_provider.dart';
 import 'package:platform_convertera_pp/provider/theme_provider.dart';
+import 'package:platform_convertera_pp/utils/adaptive/adaptive.dart';
 import 'package:platform_convertera_pp/utils/adaptive/save_adaptive.dart';
 import 'package:provider/provider.dart';
-import '../../../../../provider/switchProvider.dart';
 import 'components/pick_date.dart';
 import 'components/pick_time.dart';
 import 'components/text_field.dart';
@@ -63,17 +64,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            Text_field_method(),
+            const Text_field_method(),
             PickDateMethod(context),
             PickTimeMethod(context),
             const SizedBox(
               height: 60,
             ),
-             SingleChildScrollView(
+             const SingleChildScrollView(
                child: Row(
                  mainAxisAlignment: MainAxisAlignment.center,
                  children: [
-                   SaveButton(),
+                   AdaptiveSaveButton(),
                  ],
                ),
              ),

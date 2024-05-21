@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../provider/switchProvider.dart';
+import '../../provider/SwitchProvider.dart';
 
 
 class AdaptiveTextField extends StatelessWidget {
@@ -18,24 +18,8 @@ class AdaptiveTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (Provider.of<SwitchProvider>(context).isActive)
-        ? Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: TextField(
-          controller: controller,
-          decoration: InputDecoration(
-              prefixIcon: icon,
-              hintText: hintText,
-              labelText: hintText,
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey)),
-              disabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey, width: 1))),
-        ),
-      ),
-    )
-        : Row(
+        ?
+    Row(
       children: [
         icon,
         SizedBox(
@@ -59,6 +43,24 @@ class AdaptiveTextField extends StatelessWidget {
           ),
         ),
       ],
+    ):
+    Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextField(
+          controller: controller,
+          decoration: InputDecoration(
+              prefixIcon: icon,
+              hintText: hintText,
+              labelText: hintText,
+              border: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+              ),
+              disabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 1))),
+        ),
+      ),
     );
   }
 }

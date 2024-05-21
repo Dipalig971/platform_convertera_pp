@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../../../../../../utils/text_editing_controllers.dart';
-import '../profile.dart';
+import '../../../../../../provider/dateTime_provider.dart';
 
 InkWell PickDateMethod(BuildContext context) {
+  final ProviderTrue = Provider.of<AddProvider>(context, listen: true);
+  final ProviderFalse = Provider.of<AddProvider>(context, listen: false);
   return InkWell(
     onTap: () async {
-      DateTime selectedDate = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(1987),
-        lastDate: DateTime(2030),
-      ) ??
-          DateTime.now();
-      print(selectedDate);
-      dateController.text = "${selectedDate.toLocal()}".split(' ')[0];
+      ProviderFalse.setDate(await showDatePicker(
+              context: context,
+              firstDate: DateTime(1930),
+              lastDate: DateTime(2040)) ??
+          DateTime.now());
     },
     child: Row(
       children: [
@@ -26,11 +24,10 @@ InkWell PickDateMethod(BuildContext context) {
           ),
         ),
         Text(
-          dateController.text.isEmpty
-              ? 'Pick Date'
-              : dateController.text,
-          style: const TextStyle(fontSize: 18),
-        )
+          ProviderTrue.dateTime == null
+              ? "Pick Time"
+              : "${ProviderTrue.dateTime!.day.toString() + ":" + ProviderTrue.dateTime!.month.toString() + ":" + ProviderTrue.dateTime!.year.toString()}",style: TextStyle(fontSize: 20),
+        ),
       ],
     ),
   );

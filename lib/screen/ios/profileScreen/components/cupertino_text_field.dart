@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
-import '../../../../utils/text_editing_controllers.dart';
 import '../../../android/homescreen/view/profilescreen/profile.dart';
 
 Column Cupertino_Text_Filed() {
@@ -22,7 +20,7 @@ Column Cupertino_Text_Filed() {
       ),
       const SizedBox(height: 20),
       CupertinoTextField(
-        controller: nameController,
+        controller: numberController,
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
           border: Border.all(color: CupertinoColors.systemGrey),
@@ -36,7 +34,7 @@ Column Cupertino_Text_Filed() {
       ),
       const SizedBox(height: 20),
       CupertinoTextField(
-        controller: nameController,
+        controller: chatsController,
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
           border: Border.all(color: CupertinoColors.systemGrey),

@@ -33,13 +33,13 @@ class HomeScreen extends StatelessWidget {
             Text('CALLS'),
             Text('SETTINGS'),
           ],
-          views:  [
+          views:   [
             ProfileScreen(),
             ChatScreen(),
             CallScreen(),
             SettingScreen(),
           ],
-        )
+        ),
         );
   }
 }

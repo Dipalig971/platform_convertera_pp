@@ -23,19 +23,19 @@ class PlatformConverterAPP extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ThemeProvider()),
         // ChangeNotifierProvider(create: (context) => PlatformProvider()),
         // ChangeNotifierProvider(create: (context) => ConverterProvider()),
-        ChangeNotifierProvider(create: (context) => ChatConversationProvider(),),
+        ChangeNotifierProvider(create: (context) => ChatProvider(),),
         ChangeNotifierProvider(create: (context) => ProfileSwitchProvider(),),
         ChangeNotifierProvider(create: (context) => AddProvider(),),
         ChangeNotifierProvider(create: (context) => Image_Provider(),),
       ],
-      child: AdaptiveScreen(),
-      // builder:(context, child) => MaterialApp(
-      //   debugShowCheckedModeBanner: false,
-      //   // home: ProfileScreen(),
-      //   routes: {
-      //     '/':(context) => AdaptiveScreen(),
-      //   },
-      // ),
+      // child: AdaptiveScreen(),
+      builder:(context, child) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        // home: ProfileScreen(),
+        routes: {
+          '/':(context) => AdaptiveScreen(),
+        },
+      ),
     );
   }
 }

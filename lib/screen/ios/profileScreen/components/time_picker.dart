@@ -1,26 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import '../../../../provider/dateTime_provider.dart';
 
-import '../../../../provider/theme_provider.dart';
-
-GestureDetector time_picker(context) {
-  return GestureDetector(
-    onTap: () {
+CupertinoButton time_picker(context) {
+  final ProviderTrue = Provider.of<AddProvider>(context, listen: true);
+  final ProviderFalse = Provider.of<AddProvider>(context, listen: false);
+  return CupertinoButton(
+    child: Row(
+      children: [
+        const Icon(
+          CupertinoIcons.alarm,
+          size: 22,
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Text(
+          ProviderTrue.dateTime == null
+              ? "Pick Time"
+              : "${ProviderTrue.timeOfDay!.hour.toString() + ":" + ProviderTrue.timeOfDay!.minute.toString()}",),
+     ],
+    ),
+    onPressed: () {
       CupertinoTimerPicker(
-        onTimerDurationChanged: (value) {},
+        onTimerDurationChanged: (value) {
+          ProviderFalse.setTime(duration: value);
+        },
       );
     },
-    child:Row(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Icon(
-            CupertinoIcons.alarm,
-            size: 22,
-          ),
-        ),
-        Text('Pick Time',style: TextStyle(color: Provider.of<ThemeProvider>(context).isDark ? CupertinoColors.white : CupertinoColors.black ))
-      ],
-    ),
   );
 }
